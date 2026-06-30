@@ -9,7 +9,7 @@ import argparse
 from apps.shield.normalizer import leet_normalize
 from apps.shield.detector import contains_or
 from apps.shield.delimiters import well_parenthesized
-from apps.morpho.automaton import morpho_automaton, build_word, classify
+from apps.morpho.automaton import morpho_automaton, classify
 from apps.morpho.discover import discover, segment_to_tree
 from apps.shield.decomposer import (
     shield_automaton, is_blocked, txt, ovr, role, seq, frame, sys,
@@ -67,4 +67,3 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
-

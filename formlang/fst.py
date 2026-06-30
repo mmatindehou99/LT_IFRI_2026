@@ -3,7 +3,7 @@ sortie. Suffisant pour la normalisation (leet). Le MIROIR w -> w^R N'EST PAS
 réalisable one-way (mémoire bornée) : il faudrait un transducteur bidirectionnel
 -> voir reverse_twoway()."""
 from __future__ import annotations
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 @dataclass

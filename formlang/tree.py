@@ -8,7 +8,7 @@ C'est le coeur réutilisé par apps/morpho (morphologie) ET apps/shield
 JAMAIS redéfinir un automate — elle instancie celui-ci.
 """
 from __future__ import annotations
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional, Hashable
 from collections import defaultdict
 
@@ -25,7 +25,10 @@ class Term:
 
 class _Reject:
     __slots__ = ()
-    def __repr__(self): return "REJECT"
+    def __repr__(self):
+        return "REJECT"
+
+
 REJECT = _Reject()   # sentinelle d'état « aucune règle applicable »
 
 

@@ -12,9 +12,9 @@ class DelimiterPDA:
     def accepts(self, w: str) -> bool:
         stack = []
         for c in w:
-            if c in self.open:                    # δ(q,o,X) = (q, #o X) : empiler
+            if c in self.open:                    # empiler témoin
                 stack.append(c)
-            elif c in self.match:                 # δ(q,c,#o) = (q, ε) : dépiler si ok
+            elif c in self.match:                 # dépiler si sommet correspond
                 if not stack or stack[-1] != self.match[c]:
                     return False
                 stack.pop()
@@ -22,4 +22,4 @@ class DelimiterPDA:
                 continue
             else:
                 return False                      # symbole hors alphabet
-        return len(stack) == 0                     # δ(q,ε,Z0)=(q,ε) : pile vide
+        return len(stack) == 0                    # acceptation : pile vide

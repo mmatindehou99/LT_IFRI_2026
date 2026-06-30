@@ -20,20 +20,25 @@ def discover(vocab: set, prefix_side: bool, K: int = 3, maxn: int = 3) -> set:
 
 
 def segment_to_tree(w: str, PRE: set, SUF: set, maxn: int = 3):
-    pres, sufs = [], []
+    pres = []
     changed = True
     while changed:
         changed = False
         for n in range(maxn, 0, -1):
             if len(w) > n + 1 and w[:n] in PRE:
-                pres.append(w[:n]); w = w[n:]; changed = True; break
+                pres.append(w[:n])
+                w = w[n:]
+                changed = True
+                break
     rev = []
     changed = True
     while changed:
         changed = False
         for n in range(maxn, 0, -1):
             if len(w) > n + 1 and w[-n:] in SUF:
-                rev.append(w[-n:]); w = w[:-n]; changed = True; break
+                rev.append(w[-n:])
+                w = w[:-n]
+                changed = True
+                break
     sufs = list(reversed(rev))
     return build_word(pres, w, sufs)
-

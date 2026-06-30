@@ -22,7 +22,8 @@ class NFA:
             s = stack.pop()
             for t in self.transitions.get((s, ""), ()):
                 if t not in clos:
-                    clos.add(t); stack.append(t)
+                    clos.add(t)
+                    stack.append(t)
         return frozenset(clos)
 
     def _move(self, states: frozenset, a: str) -> frozenset:
@@ -48,7 +49,9 @@ class NFA:
                 if not nxt:
                     continue
                 if nxt not in name:
-                    name[nxt] = f"S{n}"; n += 1; todo.append(nxt)
+                    name[nxt] = f"S{n}"
+                    n += 1
+                    todo.append(nxt)
                 trans[(name[cur], a)] = name[nxt]
         accept = {name[st] for st in name if any(s in self.accept for s in st)}
         return DFA(trans, name[start], accept, set(self.alphabet))

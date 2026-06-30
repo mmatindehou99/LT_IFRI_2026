@@ -6,4 +6,3 @@ _PDA = DelimiterPDA()
 
 def well_parenthesized(w: str) -> bool:
     return _PDA.accepts(w)
-

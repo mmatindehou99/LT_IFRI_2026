@@ -21,11 +21,9 @@ class CFG:
             if form in seen:
                 continue
             seen.add(form)
-            # nombre de terminaux déjà fixés (élagage)
             term_len = sum(1 for s in form if s not in self.nonterminals)
             if term_len > max_len:
                 continue
-            # trouver le 1er non-terminal
             idx = next((i for i, s in enumerate(form) if s in self.nonterminals), None)
             if idx is None:
                 out.add("".join(form))

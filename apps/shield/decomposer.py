@@ -10,9 +10,11 @@ _ALL = (SAFE, OVR, ROLE, DANGER)
 
 
 def _seq(x, y):
-    if x == DANGER or y == DANGER:      return DANGER     # S1-S2 : le danger remonte
-    if {x, y} == {OVR, ROLE}:           return DANGER     # S3-S4 : annulation + rôle
-    return _BY_SEV[max(_SEV[x], _SEV[y])]                 # S5 : sévérité max
+    if x == DANGER or y == DANGER:      # S1-S2 : le danger remonte
+        return DANGER
+    if {x, y} == {OVR, ROLE}:           # S3-S4 : annulation + rôle
+        return DANGER
+    return _BY_SEV[max(_SEV[x], _SEV[y])]   # S5 : sévérité max
 
 
 def shield_automaton() -> TreeAutomaton:
@@ -33,14 +35,32 @@ def shield_automaton() -> TreeAutomaton:
     return A
 
 
-# constructeurs de termes
-def txt():  return Term("txt")
-def enc():  return Term("enc")
-def ovr():  return Term("ovr")
-def role(): return Term("role")
-def seq(a, b): return Term("seq", (a, b))
-def frame(a):  return Term("frame", (a,))
-def sys(a):    return Term("sys", (a,))
+def txt():
+    return Term("txt")
+
+
+def enc():
+    return Term("enc")
+
+
+def ovr():
+    return Term("ovr")
+
+
+def role():
+    return Term("role")
+
+
+def seq(a, b):
+    return Term("seq", (a, b))
+
+
+def frame(a):
+    return Term("frame", (a,))
+
+
+def sys(a):
+    return Term("sys", (a,))
 
 
 def is_blocked(A: TreeAutomaton, t: Term) -> bool:

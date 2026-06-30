@@ -28,7 +28,6 @@ class DFA:
     def accepts(self, w: str) -> bool:
         return self.run(w) in self.accept
 
-    # ---- minimisation ------------------------------------------------------
     def _reachable(self) -> set:
         seen, todo = {self.start}, deque([self.start])
         while todo:
@@ -36,7 +35,8 @@ class DFA:
             for a in self.alphabet:
                 t = self.transitions.get((s, a))
                 if t is not None and t not in seen:
-                    seen.add(t); todo.append(t)
+                    seen.add(t)
+                    todo.append(t)
         return seen
 
     def _completed(self):
@@ -48,7 +48,8 @@ class DFA:
         for s in states:
             for a in self.alphabet:
                 if (s, a) not in trans:
-                    trans[(s, a)] = SINK; need_sink = True
+                    trans[(s, a)] = SINK
+                    need_sink = True
         if need_sink:
             states = states | {SINK}
             for a in self.alphabet:
@@ -58,7 +59,6 @@ class DFA:
     def minimize(self) -> "DFA":
         states, trans = self._completed()
         acc = {s for s in states if s in self.accept}
-        # partition initiale : finaux / non-finaux
         block = {s: (0 if s in acc else 1) for s in states}
         alpha = sorted(self.alphabet)
         while True:
@@ -75,7 +75,6 @@ class DFA:
             if new_block == block:
                 break
             block = new_block
-        # reconstruire
         rep = {}
         for s in states:
             rep.setdefault(block[s], s)
@@ -89,5 +88,6 @@ class DFA:
     def num_states(self) -> int:
         st = {self.start}
         for (s, _), t in self.transitions.items():
-            st.add(s); st.add(t)
+            st.add(s)
+            st.add(t)
         return len(st)

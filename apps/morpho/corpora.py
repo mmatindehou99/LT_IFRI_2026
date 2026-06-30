@@ -32,4 +32,3 @@ def corpus_B(n_roots: int = 150) -> list:
         B.append(r)
         B += [r + s for s in SUFFIXES_B]
     return B
-

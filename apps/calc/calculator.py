@@ -35,9 +35,14 @@ class Calculatrice:
     def chainer(self, v0: int, ops: list[tuple[str, int]]) -> int:
         v = v0
         for op, k in ops:
-            if op == "+":   v = self.addition(v, k)
-            elif op == "-": v = self.soustraction(v, k)
-            elif op == "*": v = self.multiplication(v, k)
-            elif op == "/": v, _ = self.division(v, k)
-            else: raise ValueError(f"opérateur inconnu : {op!r}")
+            if op == "+":
+                v = self.addition(v, k)
+            elif op == "-":
+                v = self.soustraction(v, k)
+            elif op == "*":
+                v = self.multiplication(v, k)
+            elif op == "/":
+                v, _ = self.division(v, k)
+            else:
+                raise ValueError(f"opérateur inconnu : {op!r}")
         return v
