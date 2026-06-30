@@ -51,5 +51,6 @@ rendu contenant un exemple d'attaque réelle est hors-sujet et pénalisé.
 
 ## Licence
 
-Domaine public (CC0) — matériel pédagogique.
+Tous droits réservés — licence propriétaire (voir `LICENSE`). Aucune copie,
+utilisation, modification ou distribution sans autorisation écrite de l'auteur.
 
